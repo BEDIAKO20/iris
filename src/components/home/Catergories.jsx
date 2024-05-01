@@ -11,7 +11,7 @@ function Catergories() {
       <div className="container">
         <div className=" row">
           <div className="col-md-12 catergoirs-Box mt-5">
-            <Link to="/Product">
+            <Link to="/Product/Home Decor">
               <div class="image-container">
                 <img
                   src={homeDecorl}
@@ -27,7 +27,7 @@ function Catergories() {
         </div>
         <div className="row mt-5 ms-5 ">
           <div className="col-lg-6">
-            <Link to="/Product">
+            <Link to="/Product/Arts">
             <div class="image-container">
               <img src={artsImage} alt="furntiuer" className="artsImage" />
               <div class="Art-overlay">
@@ -40,7 +40,7 @@ function Catergories() {
           </div>
 
           <div className="col-lg-6">
-            <Link to="/Product">
+            <Link to="/Product/Furniture">
             <div class="image-container">
               <img src={furntiuerlmage} alt="furntiuer" className="furntiuer" />
               <div class="furntiner-overlay">

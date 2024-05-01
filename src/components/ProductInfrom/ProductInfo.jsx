@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import  '../ProductInfrom/productInfrom.css'
 import upcyledTable from "../ProductInfrom/image/upcyledMetalTable.svg";
 import  metalTeble1 from "../ProductInfrom/image/meralTable1.svg"
@@ -7,12 +7,16 @@ import metal  from "../ProductInfrom/image/metal.svg"
 import table from "../ProductInfrom/image/table.svg"
 import home from "../ProductInfrom/image/home.svg"
 import BtnAddToCart from "../BtnAddToCart/BtnAddToCart"
+import { useParams } from 'react-router';
+import { collection, onSnapshot, query } from 'firebase/firestore'
+import { db } from '../Firebase/Firebase'
 
 
 function ProductInfo() {
     // const [quantity, setQuantity] = useState(1);
     // const handleIncrease = () => {
-    //     setQuantity(quantity + 1);
+    //    
+           setQuantity(quantity + 1);
     //   };
     
     //   const handleDecrease = () => {
@@ -20,31 +24,65 @@ function ProductInfo() {
     //       setQuantity(quantity - 1);
     //     }
     //   };
+
+  
+    const {productId}= useParams()
+
+
+    const [allItemProducts,setAllItemProducts]= useState([]);
+
+    const productsCollectionRef = collection(
+      db,
+      `products`
+    );
+  
+    const q = query(productsCollectionRef);
+    const allProducts = onSnapshot(q, async (querySnapshot) => {
+      const productsArray = [];
+      querySnapshot.forEach((doc) => {
+        productsArray.push(doc.data());
+      });
+  
+      console.log("Products array",productsArray)
+  
+      const filteredItems = productsArray.find((item) => {
+        return item.uuid === productId;
+      });
+  
+  
+      setAllItemProducts(filteredItems)
+  
+  
+    })
+  
+  
+
+
+  
+
+
   return (
     <>
       <div className="container mt-5 py-5">
         <div className="row">
           <div className="col-lg-6 col-sm-6">
             <div>
-              <img src={upcyledTable} />
+              <img style={{width:"400px"}} src={allItemProducts?.url} />
             </div>
           </div>
 
           <div className="col-lg-6 col-sm-6">
-            <p className="upcycledText">Upcycled Metal Table</p>
-            <p className="upcycled-Money">$500.00</p>
+            <p className="upcycledText">{allItemProducts?.productTitle} </p>
+            <p className="upcycled-Money">${allItemProducts?.price}</p>
             <BtnAddToCart/>
             {/* <button className="quantity">
               <span onClick={handleIncrease}>+</span>
               <span>{quantity}</span>
               <span onClick={handleDecrease} >-</span>
             </button> */}
-            <p className="composition-text mt-4">Composition</p>
+            <p className="composition-text mt-4">Description</p>
             <p className="item-text">
-              Lorem ipsum dolor sit amet consectetur. Non non dis senectus est
-              quis nunc. Ac nunc sagittis tristique neque ultrices dui. Lobortis
-              cras aliquam sed odio pretium elementum quam. Augue turpis nibh
-              velit proin malesuada lectus condimentum purus consectetur. 
+            {allItemProducts?.description}
             </p>
             <p className="item-text">
             Cursus consequat nec nunc vestibulum eget egestas auctor aliquam vitae.

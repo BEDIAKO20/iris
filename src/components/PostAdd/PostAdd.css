@@ -1,0 +1,56 @@
+
+ .add-post{
+    display:  flex;
+    justify-content: center;
+    background-color: whitesmoke;
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid white;
+    
+}
+.box{
+   margin-left: 20%;
+
+}
+
+.inputS-box{
+
+   margin-left: 20% !important;
+}
+
+
+.container {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .file-label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .file-input {
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    background-color: #4caf50; /* Green */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Laila', serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+  
+
+  
+
+  
